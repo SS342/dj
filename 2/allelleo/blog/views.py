@@ -5,7 +5,7 @@ from .models import Blog
 
 menu = [
     {'title': 'Home', 'url_name': 'home'},
-    {'title': 'News', 'url_name': 'news'},
+    {'title': 'About', 'url_name': 'about'},
     {'title': 'New Article', 'url_name': 'new_article'},
     {'title': 'Contact', 'url_name': 'contact'},
     {'title': 'Sign In', 'url_name': 'sign_in'}
@@ -15,42 +15,44 @@ menu = [
 # Create your views here.
 def index(request):
     posts = Blog.objects.all()
-    return render(request, 'blog/index.html', {
+    context = {
         "title": "Home",
         'menu': menu,
         'posts': posts,
-    })
+    }
+    return render(request, 'blog/index.html', context=context)
 
 
 def about(request):
-    return render(request, 'blog/about.html', {
+    context = {
         "title": "About",
         'menu': menu,
-    })
+    }
+    return render(request, 'blog/about.html', context=context)
 
-def news(request):
-    return render(request, 'blog/news.html', {
-        "title": "news",
-        'menu': menu,
-    })
 
 def new_article(request):
-    return render(request, 'blog/new_article.html', {
+    context = {
         "title": "new_article",
         'menu': menu,
-    })
+    }
+    return render(request, 'blog/new_article.html', context=context)
+
 
 def contact(request):
-    return render(request, 'blog/contact.html', {
-        "title": "contact",
+    context = {
+        "title": "Contact",
         'menu': menu,
-    })
+    }
+    return render(request, 'blog/contact.html', context=context)
+
 
 def sign_in(request):
-    return render(request, 'blog/sign_in.html', {
-        "title": "sign_in",
+    context = {
+        "title": "Sign In",
         'menu': menu,
-    })
+    }
+    return render(request, 'blog/sign_in.html', context=context)
 
 
 def pageNotFound(request, exception):
