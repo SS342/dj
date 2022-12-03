@@ -55,5 +55,9 @@ def sign_in(request):
     return render(request, 'blog/sign_in.html', context=context)
 
 
+def show_post(request, post_id):
+    return HttpResponse(f"Post: {post_id}")
+
+
 def pageNotFound(request, exception):
     return HttpResponseNotFound("404 error")

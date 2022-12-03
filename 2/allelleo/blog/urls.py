@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 
-from .views import index, about, new_article, contact, sign_in
+from .views import index, about, new_article, contact, sign_in, show_post
 
 urlpatterns = [
     path("", index, name="home"),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('new-article/', new_article, name="new_article"),
     path('contact/', contact, name="contact"),
     path('sign-in/', sign_in, name="sign_in"),
+    path('post/<int:post_id>/', show_post, name="post"),
 ]
 
