@@ -1,9 +1,13 @@
 from django.urls import path, re_path
 
-from .views import index, categories, categories_by_id, categories_by_year, about
+from .views import index, about, news, new_article, contact, sign_in
 
 urlpatterns = [
     path("", index, name="home"),
-    path('about/', about),
+    path('about/', about, name="about"),
+    path('news/', news, name="news"),
+    path('new-article/', new_article, name="new_article"),
+    path('contact/', contact, name="contact"),
+    path('sign-in/', sign_in, name="sign_in"),
 ]
 

@@ -3,7 +3,14 @@ from django.http import HttpResponse, HttpResponseNotFound, Http404
 
 from .models import Blog
 
-menu = ["Home", "News", "New Article", "Sign In"]
+menu = [
+    {'title': 'Home', 'url_name': 'home'},
+    {'title': 'News', 'url_name': 'news'},
+    {'title': 'New Article', 'url_name': 'new_article'},
+    {'title': 'Contact', 'url_name': 'contact'},
+    {'title': 'Sign In', 'url_name': 'sign_in'}
+]
+
 
 # Create your views here.
 def index(request):
@@ -14,27 +21,36 @@ def index(request):
         'posts': posts,
     })
 
+
 def about(request):
     return render(request, 'blog/about.html', {
         "title": "About",
         'menu': menu,
     })
 
-def categories(request):
-    if (request.GET):
-        print(request.GET)
-    return HttpResponse("<h1> Посты по категориям </h1>")
+def news(request):
+    return render(request, 'blog/news.html', {
+        "title": "news",
+        'menu': menu,
+    })
 
+def new_article(request):
+    return render(request, 'blog/new_article.html', {
+        "title": "new_article",
+        'menu': menu,
+    })
 
-def categories_by_id(request, catid):
-    return HttpResponse(f"<h1> Посты по категориям </h1><p>{catid}</p>")
+def contact(request):
+    return render(request, 'blog/contact.html', {
+        "title": "contact",
+        'menu': menu,
+    })
 
-
-def categories_by_year(request, year):
-    if int(year) > 2022:
-        return redirect('home', permanent=True)
-        raise Http404()
-    return HttpResponse(f"<h1> Посты по годам </h1><p>{year}</p>")
+def sign_in(request):
+    return render(request, 'blog/sign_in.html', {
+        "title": "sign_in",
+        'menu': menu,
+    })
 
 
 def pageNotFound(request, exception):
