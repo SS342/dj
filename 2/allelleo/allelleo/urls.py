@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from allelleo import settings
-from blog.views import index, categories, pageNotFound
+from blog.views import pageNotFound
 
 urlpatterns = [
     path('admin/', admin.site.urls),

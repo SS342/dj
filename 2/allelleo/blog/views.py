@@ -1,11 +1,24 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 
+from .models import Blog
+
+menu = ["Home", "News", "New Article", "Sign In"]
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Страница блога")
+    posts = Blog.objects.all()
+    return render(request, 'blog/index.html', {
+        "title": "Home",
+        'menu': menu,
+        'posts': posts,
+    })
 
+def about(request):
+    return render(request, 'blog/about.html', {
+        "title": "About",
+        'menu': menu,
+    })
 
 def categories(request):
     if (request.GET):
